@@ -1,0 +1,38 @@
+def check_adj(s, idx, letters = ['A','B']):
+    """
+    Find locations where we can remove an AB
+    """
+    n = len(s)
+    main, adj = letters
+
+    #### Check for letters[0] then letters[1] type combinations
+    checker_after = lambda x,y: x==main and y==adj
+    #### Check for letters[1] then letters[0] type combinations
+    checker_before = lambda x,y: x==adj and y==main
+    if idx<0
+    before = checker_before(s[i], s[i+1])
+
+
+    ### we'll return them together as currently it doesn't matter in the code
+    ### Both after and before can be treated the same as we just delete
+    ### i and i+1 for i in the returned list
+    return after+before
+
+def recursive_solution(s):
+    AB_possibilities = check_adj(s)
+    CD_possibilites = check_adj(s, letters = ['C','D'])
+    all_possibilities = AB_possibilities+CD_possibilites
+    ret = []
+    for idx in all_possibilities:
+        transformed_string = transfrom(s, idx)
+        ret.append(transformed_string)
+        ret = ret + recursive_solution(transformed_string)
+    return ret
+
+POSS = ['AB', 'BA', 'CD', 'DC']
+def transform(s, idx):
+    char_list = s.split('')
+    second = char_list.pop(idx+1)
+    first = char_list.pop(idx)
+    assert first+second in POSS, ValueError('Removed invalid elements in transform')
+    return ''.join(char_list)
